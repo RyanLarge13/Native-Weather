@@ -1,50 +1,145 @@
-# Welcome to your Expo app 👋
+# 🌤️ Expo Weather App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+[![Built with Expo](https://img.shields.io/badge/built%20with-expo-1f2024.svg?logo=expo)](https://expo.dev/)
+[![React Native](https://img.shields.io/badge/framework-react--native-61dafb.svg?logo=react)](https://reactnative.dev/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/language-TypeScript-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![SQLite](https://img.shields.io/badge/database-SQLite-lightgrey.svg?logo=sqlite)](https://www.sqlite.org/)
+[![Location API](https://img.shields.io/badge/location-enabled-success.svg)](#)
 
-## Get started
+---
 
-1. Install dependencies
+## 📚 Table of Contents
 
-   ```bash
-   npm install
-   ```
+- [📱 Features](#-features)
+- [🚀 Tech Stack](#-tech-stack)
+- [🧠 Architecture Overview](#-architecture-overview)
+- [📂 Project Structure Highlights](#-project-structure-highlights)
+- [🛠️ Setup & Usage](#️-setup--usage)
+- [🧪 Notes](#-notes)
+- [📸 Screenshots](#-screenshots)
+- [📝 Future Improvements](#-future-improvements)
+- [📄 License](#-license)
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📱 Features
 
-In the output, you'll find options to open the app in a
+- 📍 Auto-detects device location using permissions
+- 🏙️ Supports static city selection from `cities.json`
+- 🌦️ Shows:
+  - Current weather conditions
+  - 24-hour hourly forecast
+  - 7-day forecast
+- 🎨 Theme support (orange, blue, green)
+- 💾 SQLite-based settings storage (theme, temperature unit, accuracy)
+- 🎞 Animated transitions using Moti
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🚀 Tech Stack
 
-## Get a fresh project
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [Moti](https://moti.fyi/)
+- [expo-location](https://docs.expo.dev/versions/latest/sdk/location/)
+- [expo-sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
+- TypeScript
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## 🧠 Architecture Overview
+
+The app revolves around the `Index` screen which:
+
+- Initializes app state
+- Loads saved settings from SQLite
+- Requests and handles location permissions
+- Loads weather data from local dummy data or (optionally) an API
+- Renders:
+  - Current weather (`<Today />`)
+  - Weather details (`<TodaysInfo />`)
+  - Hourly forecast (`<Hourly />`)
+  - Weekly forecast (`<Day />`)
+
+---
+
+## 📂 Project Structure Highlights
+
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+.
+├── assets/
+│ ├── images/icons/ # Weather icons
+│ └── cities.json # City coordinates map
+├── components/
+│ ├── Today.tsx
+│ ├── TodaysInfo.tsx
+│ ├── Hourly.tsx
+│ └── Day.tsx
+├── hooks/
+│ └── useTabAnimation.ts
+├── utils/
+│ ├── api.ts
+│ ├── dayStringMap.ts
+│ ├── weatherCodes.ts
+│ └── dummyData.ts
+└── index.tsx # Main screen logic
 
-## Learn more
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🛠️ Setup & Usage
 
-## Join the community
+### Prerequisites
 
-Join our community of developers creating universal apps.
+- Node.js
+- Expo CLI
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Getting Started
+
+```bash
+git clone https://github.com/yourusername/weather-app.git
+cd weather-app
+npm install
+npx expo start
+```
+
+- Ensure your emulator or mobile device has **location services enabled**
+- The local SQLite database (`myApp.db`) should contain a `Settings` table
+
+---
+
+## 🧪 Notes
+
+- Weather data is loaded from `utils/dummyData.ts`
+
+  > You can replace `M_FetchWeather()` logic to call a real API (like OpenWeatherMap)
+
+- If location access is denied, the app falls back to manually selected cities
+
+---
+
+## 📸 Screenshots
+
+> _(Add screenshots here if available)_
+> For example:
+>
+> - ![Today Screen](./screenshots/today.png)
+> - ![Weekly Forecast](./screenshots/weekly.png)
+
+---
+
+## 📝 Future Improvements
+
+- 🌐 Replace dummy data with real-time API integration
+- 🧭 Fallback handling if location services fail
+- 🛠 Add user-facing Settings screen
+- 🌍 Multi-language (i18n) support
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
