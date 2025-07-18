@@ -26,15 +26,16 @@ const CityButton = ({
   const M_AddCity = async () => {
     const db = await SQLite.openDatabaseAsync("myApp.db");
 
+    const newCityDate = Date.now();
+
     if (db) {
-      console.log(city);
       try {
         await db.runAsync(
           `
               INSERT INTO Locations (id, name, lastUsed)
               VALUES (?, ?, ?);
           `,
-          [city.id, city.name, new Date().toISOString]
+          [city.id, city.name, newCityDate]
         );
 
         setMyCities((prev) => [...prev, city]);

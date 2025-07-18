@@ -33,7 +33,7 @@ const MyCity = ({
 
   return (
     <Pressable onPress={M_UpdateMyCity} className="p-5 relative">
-      <View className="bg-orange-500 absolute inset-0 opacity-25 rounded-lg my-1"></View>
+      <View className="bg-white absolute inset-0 opacity-50 rounded-lg my-1"></View>
       <Text className="text-2xl">{city.name}</Text>
     </Pressable>
   );

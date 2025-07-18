@@ -137,7 +137,7 @@ export default function Cities() {
           onChangeText={(text) => setSearchText(text)}
         />
         {myCities.length > 0 ? (
-          <View className="mt-20">
+          <View className="mt-20 mb-10">
             <Text className="text-lg mb-3">My Cities</Text>
             <FlatList
               data={myCities}
